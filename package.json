@@ -4,8 +4,10 @@
   "description": "An online tool to create custom necklaces from my Kodes accessory line",
   "main": "app.js",
   "dependencies": {
-   "express": ">= 3.5.0"
- },
+    "express": ">= 3.5.0",
+    "jsdom": "^3.1.2",
+    "pug": "*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
