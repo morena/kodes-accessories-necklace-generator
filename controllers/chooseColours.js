@@ -26,18 +26,12 @@ json = getConfig('../data/colours.json');
 /**
  * Respond to user click and capture the item they want to change colour for
  */
-function respondToClick(){
-  $("#beads path").click(function(){
-    var bead = $(this);
-    console.log(bead);
-  });
-}
-
 exports.init = function(req, res){
-  var colors = json;
+  var colours = json;
 
   res.render('choose-colours', {
     'title': 'Kodes necklaces generator',
-    'message': 'Customise your Kodes necklace'
+    'message': 'Customise your Kodes necklace',
+    'colours': colours.colours
   });
 }

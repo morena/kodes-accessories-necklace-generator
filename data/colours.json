@@ -1,9 +1,9 @@
 {
-  "colors":{
-    "black": "#000000",
-    "white": "#ffffff",
-    "blue": "#291D65",
-    "turouise": "#00B3C3",
-    "gold": "#D9BB66"
-  }
+  "colours": [
+    {"name": "black", "value": "#000000"},
+    {"name":"white","value": "#ffffff"},
+    {"name":"blue","value": "#291D65"},
+    {"name":"turquoise","value": "#00B3C3"},
+    {"name":"gold","value": "#D9BB66"}
+  ]
 }

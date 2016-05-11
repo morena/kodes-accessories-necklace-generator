@@ -6,7 +6,7 @@
   "dependencies": {
     "express": ">= 3.5.0",
     "jsdom": "^3.1.2",
-    "pug": "*"
+    "pug": ">= 0.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
