@@ -8,6 +8,8 @@ var express = require('express'),
 exports.init = function(req, res){
   var colours = json;
 
+	console.log(req.body);
+
   res.render('confirm', {
     'title': 'Kodes necklaces generator',
     'message': 'Customise your Kodes necklace'
