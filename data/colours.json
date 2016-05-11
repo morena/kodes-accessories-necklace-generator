@@ -2,8 +2,12 @@
   "colours": [
     {"name": "black", "value": "#000000"},
     {"name":"white","value": "#ffffff"},
-    {"name":"blue","value": "#291D65"},
-    {"name":"turquoise","value": "#00B3C3"},
-    {"name":"gold","value": "#D9BB66"}
+    {"name":"cobaltBlue","value": "#291D65"},
+    {"name":"lagoon","value": "#00B3C3"},
+    {"name":"gold","value": "#D9BB66"},
+    {"name":"spiceRed","value": "#BE3544"},
+    {"name":"forestGreen","value": "#438e6d"},
+    {"name":"avocadoGreen","value": "#aab25e"},
+    {"name":"blushPink","value": "#dcc3c5"}
   ]
 }
