@@ -8,8 +8,8 @@ define(["jquery",
 	var ChooseColours = compose( {
 
 		$divToPopulate: null,
-    $currentBead = null,
-    areWeEditing = false,
+    $form: null,
+    $currentBead: null,
 
 		initialise: function($el){
 			this.$el = $el;
@@ -45,43 +45,32 @@ define(["jquery",
     respondToClick: function(){
       var self = this;
       $("#beads path").click(function(){
-        var $bead = null,
-            id = null;
 
-        //check if we are editing
-        if(areWeEditing === true){
-          //save bead ID in memory
-          self.$currentBead = $bead;
-        }else{
-          $bead = $(this),
-          //save bead ID in memory
-          self.$currentBead = $bead;
-        }
-        id = $bead.attr("id");
+        var $bead = $(this);
+        //save bead ID in memory
+        self.$currentBead = $bead;
+        console.log(self.$currentBead);
 
-        //also record that we are editing hence won't be expecting another click on same bead unless it's to change bead
-        self.areWeEditing = true;
+        //record colour click
+        $("#colours li").click(function(){
+          var bgColour = $(this).attr("class");
+          self.pickColour(bgColour);
 
-        console.log(id);
-
-        //assignAColour
-        self.pickColour($bead);
-
+        });
       });
-    }
-	});
+    },
 
-  pickColour:function($bead){
-    //record colour click
-    $("#colours li").click(function(){
-      var bgColour = $(this).attr("class");
+    pickColour: function(bgColour){
+      var $bead = this.$currentBead,
+          id = $bead.attr("id");
+      console.log(id);
       $bead.css('fill', bgColour);
 
       //pass the value of the colour chosen to the bead
       $("#necklaceORderForm #bead" + id).val(bgColour);
 
-    });
-  }
+    }
+	});
 
 	return ChooseColours;
 });
