@@ -14,7 +14,7 @@ html
         for item in colours
           li(style={background: item.value},class=item.value)=item.name
     div(data-module='chooseColours', id='svgWrapper')
-      form(id='necklaceORderForm', action='confirm-order')
+      form(id='necklaceORderForm', action='/confirm-order' method='post')
         svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='457px', height='487px', viewbox='0 0 457 487', enable-background='new 0 0 457 487', xml:space='preserve')
           g#shadow
             g

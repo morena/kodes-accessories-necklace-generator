@@ -27,4 +27,4 @@ app.get('/', function(req, res) {
 });
 
 app.get("/choose-colours", chooseColours.init);
-app.get("/confirm-order", confirmOrder.init);
+app.post("/confirm-order", confirmOrder.init);

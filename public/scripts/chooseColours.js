@@ -38,7 +38,7 @@ define(["jquery",
 
       for(var i = 0; i < beads.length; i++){
         //console.log(beads[i]);
-        $input = '<input type="hidden" class="order" value="0" id="bead'+beads[i]+'" />';
+        $input = '<input type="hidden" class="order" value="0" id="bead'+beads[i]+'" name="bead'+beads[i]+'" />';
         $form.append($($input));
       }
 
