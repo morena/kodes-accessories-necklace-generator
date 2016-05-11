@@ -46,22 +46,39 @@ define(["jquery",
     respondToClick: function(){
       var self = this;
       $("#beads > g").click(function(){
-
         var $bead = $(this);
         //save bead ID in memory
         self.$currentBead = $bead;
         //console.log(self.$currentBead);
 
-        //record colour click
+        //respond on click on colour
         $("#colours li").click(function(){
           var bgColour = $(this).attr("class");
           self.pickColour(bgColour);
-
         });
+
+        /*//respond to click on cord
+        $("#beads #cord_1").click(function(){
+          var $bead = $(this);
+          //save bead ID in memory
+          self.$currentBead = $bead;
+          //console.log(self.$currentBead);
+        });*/
       });
     },
 
     pickColour: function(bgColour){
+      var $bead = this.$currentBead,
+          id = $bead.attr("id");
+      //console.log(id);
+      console.log($("#" + id + "b"));
+      $('#' + id + ' > g[id^="b"] path').css('fill', bgColour); //only one side of the bead for now
+
+      //pass the value of the colour chosen to the bead
+      $("#necklaceORderForm #bead" + id).val(bgColour);
+
+    },
+    pickColourForCord: function(bgColour){
       var $bead = this.$currentBead,
           id = $bead.attr("id");
       //console.log(id);

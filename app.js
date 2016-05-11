@@ -1,7 +1,8 @@
 var express = require('express'),
     path = require('path'),
     app = express(),
-    chooseColours = require("./controllers/chooseColours");
+    chooseColours = require("./controllers/chooseColours"),
+    confirmOrder = require("./controllers/confirmOrder");
 
 app.set('port', 3000);
 app.set('views', __dirname + '/views');
@@ -23,3 +24,4 @@ app.get('/', function(req, res) {
 });
 
 app.get("/choose-colours", chooseColours.init);
+app.get("/confirm-order", confirmOrder.init);
