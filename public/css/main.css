@@ -6,4 +6,8 @@ section {
 }
 #colours button{
   margin-bottom:5px;
+  color:#fff;
+}
+#colours li:first-child button{
+  color:black;
 }
