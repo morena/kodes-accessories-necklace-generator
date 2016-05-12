@@ -22,7 +22,7 @@ define(["jquery",
 		},
 
     setupForm:function(){
-      var $form = $("#necklaceORderForm"),
+      var $form = $("#necklaceOrderForm"),
           $input = '',
           beads = [],
           id = 0;
@@ -30,7 +30,7 @@ define(["jquery",
       $("#beads > g").each(function(){
         id = $(this).attr("id");
         if(typeof id != 'undefined' && id != "cord_1_"){
-          console.log(id);
+          //console.log(id);
           beads.push($(this).attr("id"));
         }
       });
@@ -38,11 +38,11 @@ define(["jquery",
 
       for(var i = 0; i < beads.length; i++){
         //console.log(beads[i]);
-        $input = '<input type="hidden" class="order" value="0" id="bead'+beads[i]+'" name="bead'+beads[i]+'" />';
+        $input = '<input type="hidden" class="order" value="0" id="'+beads[i]+'" name="'+beads[i]+'" />';
         $form.append($($input));
       }
 
-      $("confirmOrder").prop('disabled', true);
+      $("#confirmOrder").prop('disabled', true);
     },
 
     respondToClick: function(){
@@ -55,8 +55,9 @@ define(["jquery",
 
         //respond on click on colour
         $("#colours li").click(function(){
-          var bgColour = $(this).attr("class");
-          self.pickColour(bgColour);
+          var bgColour = $(this).attr("class"),
+              colourName = $(this).data("colour");
+          self.pickColour(bgColour, colourName);
         });
 
         /*//respond to click on cord
@@ -69,49 +70,60 @@ define(["jquery",
 
         //form validation
         //disabled for test purposes
-        /*$("confirmOrder").click(function(e){
+        $("#confirmOrder").click(function(e){
           var valid = true;
           e.preventDefault();
 
           $(".order").each(function(){
-            var value = $(this).val();
-            if(value == '0' ){
+            var beadValue = $(this).val();
+            if(beadValue == '0' ){
               valid = false;
             }
           });
 
+					$(".detailsFormField").each(function(){
+						var fieldValue = $(this).val();
+            if(fieldValue == null ){
+              valid = false;
+            }
+					});
+
           if(valid === false){
-            alert("You have not personalised all the beads.");
+            alert("You have not personalised all the beads or filled in all the required personal details fields.");
           }else{
-            $("#necklaceORderForm")[0].submit();
+            $("#necklaceOrderForm")[0].submit();
           }
-        });*/
+        });
+
+
       });
     },
 
-    pickColour: function(bgColour){
+    pickColour: function(bgColour, colourName){
       var $bead = this.$currentBead,
           id = $bead.attr("id");
+      //console.log(bgColour);
       //console.log(id);
-      $('#' + id + ' > g[id^="b"] path').css('fill', bgColour); //only one side of the bead for now
+      $('#' + id + ' g[id^="b"] path').css('fill', bgColour); //only one side of the bead for now
+      //console.log('#' + id + ' #b path');
 
       //pass the value of the colour chosen to the bead
-      $("#necklaceORderForm #bead" + id).val(bgColour);
+      $("#necklaceOrderForm #" + id).val(colourName);
 
-      $("confirmOrder").prop('disabled', false);
+      $("#confirmOrder").prop('disabled', false);
 
     },
-    pickColourForCord: function(bgColour){
+
+    /*pickColourForCord: function(bgColour){
       var $bead = this.$currentBead,
           id = $bead.attr("id");
       //console.log(id);
-      console.log($("#" + id + "b"));
+      //console.log($("#" + id + "b"));
       $("#" + id + "b path").css('fill', bgColour); //only one side of the bead for now
 
       //pass the value of the colour chosen to the bead
-      $("#necklaceORderForm #bead" + id).val(bgColour);
-
-    }
+      $("#necklaceOrderForm " + id).val(bgColour);
+    }*/
 	});
 
 	return ChooseColours;

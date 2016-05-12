@@ -6,25 +6,25 @@ html
     script(src='/scripts/lib/require.js', data-main='scripts/app')
     link(rel='stylesheet', href='/css/main.css')
   body
-    h1= message
-    h2 Choose your colours
+    h1= title
+    h2= message
     p Click on a bead and then choose a colour from the list
     div(id='colours')
       ul
         for item in colours
-          li(style={background: item.value},class=item.name)=item.name
+          li(style={background: item.value},class=item.value, data-colour=item.name)=item.name
     div(data-module='chooseColours', id='svgWrapper')
-      form(id='necklaceORderForm', action='/confirm-order' method='post')
-        label(for='firstName') First Name
+      form(id='necklaceOrderForm', action='/confirm-order' method='post')
+        label(for='firstName', class='detailsFormField') First Name
         input(name='firstName', id='firstName')
         br
-        label(for='LastName') Last Name
-        input(name='LastName', id='LastName')
+        label(for='lastName', class='detailsFormField') Last Name
+        input(name='lastName', id='lastName')
         br
-        label(for='email') Email
+        label(for='email', class='detailsFormField') Email
         input(name='email', id='email')
         br
-        label(for='address') Address
+        label(for='address', class='detailsFormField') Address
         textarea(name='address', id='address')
         br
         include ./svg.jade

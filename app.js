@@ -5,7 +5,7 @@ var express = require('express'),
     chooseColours = require("./controllers/chooseColours"),
     confirmOrder = require("./controllers/confirmOrder");
 
-app.set('port', 3000);
+app.set('port', 3001);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
@@ -21,8 +21,7 @@ app.listen(app.get('port'), function () {
 app.get('/', function(req, res) {
   //res.send('hello world');
   res.render('index', {
-    'title': 'My Site',
-    'message': 'hello'
+    'title': 'Kodes Necklaces Generator'
   });
 });
 
