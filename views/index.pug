@@ -1,9 +1,7 @@
 doctype html
 html
-  head
-    title= title
-    script(src='/scripts/lib/jquery-1.12.3.min.js')
-    script(src='/scripts/lib/require.js', data-main='scripts/app')
-    link(rel='stylesheet', href='/css/main.css')
+  include ./head.jade
   body
-    h1= title
+    nav.navbar.navbar-default.navbar-fixed-top
+      include ./nav.jade
+    include ./header.jade

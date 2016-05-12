@@ -1,0 +1,40 @@
+doctype html
+html
+  include ./head.jade
+  body
+    nav.navbar.navbar-default.navbar-fixed-top.navbar-shrink
+    include ./nav.jade
+    .container
+      section
+        .row
+          .col-lg-12.text-center
+            h1.section-heading= title
+            h2.section-subheading= message
+            p.text-muted Click on a bead and then choose a colour from the list
+        div(data-module='insertDetails')
+          form(id='detailsForm', action='/choose-colours' method='post', class='form-horizontal')
+            .row
+              .col-sm-12
+                .row
+                  .form-group
+                    label(for='firstName', class='detailsFormField col-sm-2 control-label') First Name
+                    div.col-sm-10
+                      input(name='firstName', id='firstName', class='form-control', placeholder='First Name')
+                .row
+                  .form-group
+                    label(for='lastName', class='detailsFormField col-sm-2 control-label') Last Name
+                    div.col-sm-10
+                      input(name='lastName', id='lastName', class='form-control', placeholder='Last Name')
+                .row
+                  .form-group
+                    label(for='email', class='detailsFormField col-sm-2 control-label') Email
+                    div.col-sm-10
+                      input(name='email', id='email', class='form-control', placeholder='Email')
+                .row
+                  .form-group
+                    label(for='address', class='detailsFormField col-sm-2 control-label') Address
+                    div.col-sm-10
+                      textarea(name='address', id='address', class='form-control', placeholder='Address')
+              .row
+                .col-lg-12.text-center
+                  button(id='insertDetailsBtn').btn.btn-xl Order necklace

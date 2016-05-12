@@ -54,9 +54,11 @@ define(["jquery",
         //console.log(self.$currentBead);
 
         //respond on click on colour
-        $("#colours li").click(function(){
-          var bgColour = $(this).attr("class"),
+        $("#colours li button").click(function(){
+          var bgColour = $(this).data("hex"),
               colourName = $(this).data("colour");
+					console.log(bgColour);
+					console.log(colourName);
           self.pickColour(bgColour, colourName);
         });
 
@@ -81,15 +83,15 @@ define(["jquery",
             }
           });
 
-					$(".detailsFormField").each(function(){
+					/*$(".detailsFormField").each(function(){
 						var fieldValue = $(this).val();
             if(fieldValue == null ){
               valid = false;
             }
-					});
+					});*/
 
           if(valid === false){
-            alert("You have not personalised all the beads or filled in all the required personal details fields.");
+            alert("You have not personalised all the beads.");
           }else{
             $("#necklaceOrderForm")[0].submit();
           }

@@ -20,9 +20,6 @@ function getConfig(file){
     return readJsonFileSync(filepath);
 }
 
-/**
- * Respond to user click and capture the item they want to change colour for
- */
 exports.init = function(req, res){
 	var json = getConfig('../data/config.json'),
 			config = json,

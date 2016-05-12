@@ -27,11 +27,20 @@ json = getConfig('../data/colours.json');
  * Respond to user click and capture the item they want to change colour for
  */
 exports.init = function(req, res){
-  var colours = json;
+  console.log(req.body);
+  var colours = json,
+      firstName = req.body.firstName,
+      lastName = req.body.lastName,
+      email = req.body.email,
+      address = req.body.address;
 
   res.render('choose-colours', {
     'title': 'Kodes necklaces generator',
     'message': 'Customise your Kodes necklace',
-    'colours': colours.colours
+    'colours': colours.colours,
+    'firstName': firstName,
+    'lastName': lastName,
+    'email': email,
+    'address': address
   });
 }

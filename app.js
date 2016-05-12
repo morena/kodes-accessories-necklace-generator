@@ -1,7 +1,8 @@
 var express = require('express'),
     path = require('path'),
     app = express(),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    insertDetails = require("./controllers/insertDetails"),
     chooseColours = require("./controllers/chooseColours"),
     confirmOrder = require("./controllers/confirmOrder");
 
@@ -24,6 +25,6 @@ app.get('/', function(req, res) {
     'title': 'Kodes Necklaces Generator'
   });
 });
-
-app.get("/choose-colours", chooseColours.init);
+app.get("/insert-details", insertDetails.init);
+app.post("/choose-colours", chooseColours.init);
 app.post("/confirm-order", confirmOrder.init);
