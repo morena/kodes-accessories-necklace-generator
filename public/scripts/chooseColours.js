@@ -1,7 +1,8 @@
 'use strict';
 
 define(["jquery",
-		"compose"],
+				"compose",
+				"./lib/bootstrap.min"],
 	function($,
 		compose){
 
@@ -9,7 +10,8 @@ define(["jquery",
 
 		$divToPopulate: null,
     $form: null,
-    $currentBead: null,
+    $currentBeadId: null,
+		beadsToEdit: [],
 
 		initialise: function($el){
 			this.$el = $el;
@@ -51,8 +53,9 @@ define(["jquery",
         var $bead = $(this);
 				$($bead).css('border', '2px solid black;'); //this is not possible on this SVG item
         //save bead ID in memory
-        self.$currentBead = $bead;
-        //console.log(self.$currentBead);
+				self.beadsToEdit.push($bead.attr("id"));
+        //self.$currentBeadId = $bead.attr("id");
+        //console.log(self.$currentBeadId);
 
         //respond on click on colour
         $("#colours li button").click(function(){
@@ -60,15 +63,16 @@ define(["jquery",
               colourName = $(this).data("colour");
 					console.log(bgColour);
 					console.log(colourName);
-          self.pickColour(bgColour, colourName);
+					//self.openModal(bgColour, colourName);
+					self.pickColour(bgColour, colourName);
         });
 
         /*//respond to click on cord
         $("#beads #cord_1").click(function(){
           var $bead = $(this);
           //save bead ID in memory
-          self.$currentBead = $bead;
-          console.log(self.$currentBead);
+          self.$currentBeadId = $bead.attr("id");
+          console.log(self.$currentBeadId);
         });*/
 
         //form validation
@@ -84,13 +88,6 @@ define(["jquery",
             }
           });
 
-					/*$(".detailsFormField").each(function(){
-						var fieldValue = $(this).val();
-            if(fieldValue == null ){
-              valid = false;
-            }
-					});*/
-
           if(valid === false){
             alert("You have not personalised all the beads.");
           }else{
@@ -103,23 +100,32 @@ define(["jquery",
     },
 
     pickColour: function(bgColour, colourName){
-      var $bead = this.$currentBead,
-          id = $bead.attr("id");
-      //console.log(bgColour);
-      //console.log(id);
-      $('#' + id + ' g[id^="b"] path').css('fill', bgColour); //only one side of the bead for now
-      //console.log('#' + id + ' #b path');
+			var self = this;
+			for( var i = 0; i <= self.beadsToEdit.length; i++){
+				var id = self.beadsToEdit[i];
+				/*if(beadPartToPaint == 'half'){
+	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
+					colourName = colourName + ' half';
+				}else{
+	      	$('#' + id + ' g[id^="a"] path').css('fill', bgColour);
+	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
+					colourName = colourName + ' full';
+				}*/
+				$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
 
-      //pass the value of the colour chosen to the bead
-      $("#necklaceOrderForm #" + id).val(colourName);
+	      //pass the value of the colour chosen to the bead
+	      $("#necklaceOrderForm #" + id).val(colourName);
+			}
+
+			//delete beads to colour from memory //this is not very wise but otherwise I don't know what to :S
+			self.beadsToEdit = [];
 
       $("#confirmOrder").prop('disabled', false);
 
     },
 
     /*pickColourForCord: function(bgColour){
-      var $bead = this.$currentBead,
-          id = $bead.attr("id");
+      var $id = this.$currentBeadId;
       //console.log(id);
       //console.log($("#" + id + "b"));
       $("#" + id + "b path").css('fill', bgColour); //only one side of the bead for now
@@ -127,6 +133,24 @@ define(["jquery",
       //pass the value of the colour chosen to the bead
       $("#necklaceOrderForm " + id).val(bgColour);
     }*/
+
+		openModal: function(){
+			var self = $(this);
+			console.log("here");
+			$('#beadPartModal').modal();
+
+			$(".beadPartInput").click(function(){
+				var val = $(this).val();
+				console.log(val);
+			});
+
+			/*$('#beadPartModal').on('hidden.bs.modal', function (e) {
+				$(self.$currentBeadId).data('beadPart', val);
+				self.pickColour(bgColour, colourName, val);
+			});*/
+
+
+		}
 	});
 
 	return ChooseColours;

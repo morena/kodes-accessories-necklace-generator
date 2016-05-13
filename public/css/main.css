@@ -12,3 +12,6 @@ section {
 #colours li:first-child button{
   color:black;
 }
+.modal-dialog input[type=radio]{
+  box-shadow:none;
+}

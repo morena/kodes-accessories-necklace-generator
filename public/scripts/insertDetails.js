@@ -30,6 +30,16 @@ define(["jquery",
           }
 				});
 
+				console.log($("#email").val());
+				console.log($("#repeatEmail").val());
+				console.log($("#email").val() !== $("#repeatEmail").val());
+
+				if( $("#email").val() !== $("#repeatEmail").val() ){
+					$("#email, #repeatEmail").closest(".form-group").addClass("has-error");
+				}else{
+					$("#email, #repeatEmail").closest(".form-group").removeClass("has-error");
+				}
+
         if(valid === false){
           alert("You have not filled in all the required personal details fields.");
         }else{

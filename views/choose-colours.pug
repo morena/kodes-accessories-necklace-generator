@@ -10,7 +10,9 @@ html
           .col-lg-12.text-center
             h1.section-heading= title
             h2.section-subheading= message
-            p.text-muted Click on a bead and then choose a colour from the list
+            p.text-muted
+              //strong Click on one or more beads, then click on a colour and choose if you want to paint the whole bead or just half.
+              strong Click on one or more beads then click on a colour. Move onto a new bead by clicking on it.
         div.row(data-module='chooseColours', id='svgWrapper')
           form(id='necklaceOrderForm', action='/confirm-order' method='post', class='form-horizontal')
             input(type='hidden', name='firstName', id='firstName', class='form-control', placeholder='First Name', value=firstName)
@@ -30,3 +32,24 @@ html
                 .row
                   .col-lg-12.text-center
                     button(id='confirmOrder').btn.btn-xl Order necklace
+                  .modal.fade(tabindex='-1', role='dialog', id='beadPartModal')
+                    .modal-dialog
+                      .modal-content
+                        .modal-header
+                          button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                          h4.modal-title Choose what part of the bead to paint
+                        .modal-body
+                            .row
+                              .form-group
+                                label(for='half', class='col-sm-4 control-label') Half
+                                div.col-sm-2
+                                  input(type='radio', id='half', name='beadPart', value='half', class='form-control beadPartInput')
+                            .row
+                              .form-group
+                                label(for='full', class='col-sm-4 control-label') Full Bead
+                                div.col-sm-2
+                                  input(type='radio', id='full', name='beadPart', value='full', class='form-control beadPartInput')
+                        .modal-footer
+                          button.btn.btn-default(type='button', data-dismiss='modal', id='cancelModal') Cancel
+                          button.btn.btn-primary(type='button', data-dismiss='modal', id='saveModal') Save changes
