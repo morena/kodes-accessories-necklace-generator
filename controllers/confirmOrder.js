@@ -21,7 +21,7 @@ function getConfig(file){
 }
 
 exports.init = function(req, res){
-	var json = getConfig('../data/config.json'),
+	var json = getConfig('../data/new-config.json'),
 			config = json,
 			postObj = req.body,
 			messageText = '',
