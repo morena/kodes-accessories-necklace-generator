@@ -27,7 +27,7 @@ json = getConfig('../data/colours.json');
  * Respond to user click and capture the item they want to change colour for
  */
 exports.init = function(req, res){
-  console.log(req.body);
+  //console.log(req.body);
   var colours = json,
       firstName = req.body.firstName,
       lastName = req.body.lastName,

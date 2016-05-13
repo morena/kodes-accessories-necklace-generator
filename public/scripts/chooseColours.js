@@ -49,6 +49,7 @@ define(["jquery",
       var self = this;
       $("#beads > g").click(function(){
         var $bead = $(this);
+				$($bead).css('border', '2px solid black;'); //this is not possible on this SVG item
         //save bead ID in memory
         self.$currentBead = $bead;
         //console.log(self.$currentBead);

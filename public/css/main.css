@@ -7,6 +7,7 @@ section {
 #colours button{
   margin-bottom:5px;
   color:#fff;
+  padding:23px 27px;
 }
 #colours li:first-child button{
   color:black;

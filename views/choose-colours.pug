@@ -4,7 +4,6 @@ html
   body
     nav.navbar.navbar-default.navbar-fixed-top.navbar-shrink
       include ./nav.jade
-
     .container
       section
         .row
@@ -12,7 +11,7 @@ html
             h1.section-heading= title
             h2.section-subheading= message
             p.text-muted Click on a bead and then choose a colour from the list
-        div(data-module='chooseColours', id='svgWrapper')
+        div.row(data-module='chooseColours', id='svgWrapper')
           form(id='necklaceOrderForm', action='/confirm-order' method='post', class='form-horizontal')
             input(type='hidden', name='firstName', id='firstName', class='form-control', placeholder='First Name', value=firstName)
             input(type='hidden', name='lastName', id='lastName', class='form-control', placeholder='Last Name', value=lastName)
@@ -27,7 +26,7 @@ html
                     for item in colours
                       //li(style={background: item.value},class=item.value, data-colour=item.name)=item.name
                       li
-                        button(type='button', class='btn btn-default btn-lg', style={background: item.value}, data-colour=item.name, data-hex=item.value)=item.name
-              .row
-                .col-lg-12.text-center
-                  button(id='confirmOrder').btn.btn-xl Order necklace
+                        button(type='button', class='btn btn-default btn-lg', style={background: item.value}, data-colour=item.name, data-hex=item.value)
+                .row
+                  .col-lg-12.text-center
+                    button(id='confirmOrder').btn.btn-xl Order necklace
