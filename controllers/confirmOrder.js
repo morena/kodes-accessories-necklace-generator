@@ -44,7 +44,7 @@ exports.init = function(req, res){
 		server.send({
 		   text:    messageText,
 		   from:    "Kodes Order Taker <kodes@morenafiore.com>",
-		   to:      "Morena <hello@morenafiore.com>, " + req.body.firstName + '<' + req.body.email + '>',
+		   to:      "Morena <morenafiore@gmail.com>, " + req.body.firstName + '<' + req.body.email + '>',
 		   subject: "New Kodes necklace order"
 		}, function(err, message) {
 			//console.log(message);

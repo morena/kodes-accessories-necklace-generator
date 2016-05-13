@@ -6,7 +6,8 @@ var express = require('express'),
     chooseColours = require("./controllers/chooseColours"),
     confirmOrder = require("./controllers/confirmOrder");
 
-app.set('port', 3001);
+//app.set('port', 3001);
+app.listen(process.env.PORT || 5000); //for heroku to work
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
