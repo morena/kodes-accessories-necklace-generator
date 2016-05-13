@@ -44,12 +44,12 @@ exports.init = function(req, res){
 		server.send({
 		   text:    messageText,
 		   from:    "Kodes Order Taker <kodes@morenafiore.com>",
-		   to:      "Morena <hello@morenafiore.com>",
+		   to:      "Morena <hello@morenafiore.com>, " + req.body.firstName + '<' + req.body.email + '>',
 		   subject: "New Kodes necklace order"
 		}, function(err, message) {
-			console.log(message);
-			console.log(err || message);
-			if( message){
+			//console.log(message);
+			//console.log(err || message);
+			if(err == null){
 				templateMesage = req.body.firstName + ' thank you for your order!';
 			}
 		});
