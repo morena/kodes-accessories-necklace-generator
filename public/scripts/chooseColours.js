@@ -10,9 +10,10 @@ define(["jquery",
 
 		$divToPopulate: null,
     $form: null,
-    $currentBeadId: null,
+		$beads: null,
 		beadsToEdit: [],
 		bgColour : null,
+		colourName: null,
 
 		initialise: function($el){
 			this.$el = $el;
@@ -21,6 +22,7 @@ define(["jquery",
 
 		postRender: function(){
       this.setupForm();
+			this.colourNecklace();
       this.respondToClick();
 		},
 
@@ -45,11 +47,15 @@ define(["jquery",
       $("#confirmOrder").prop('disabled', true);
     },
 
+		colourNecklace: function(){
+			var beads = [];
+		},
+
     respondToClick: function(){
       var self = this;
       $("#beads > g").click(function(){
         var $bead = $(this);
-				$($bead).css('border', '2px solid black;'); //this is not possible on this SVG item
+				$($bead).css({'stroke': 'rgba(0,0,0,0.6)', 'stroke-width': '4px'});
         //save bead ID in memory
 				self.beadsToEdit.push($bead.attr("id"));
 				console.log("Added bead " + $bead.attr("id") + " to beads to paint");
@@ -63,7 +69,8 @@ define(["jquery",
 							colourName = $(this).data("colour"),
 							id = $(this).attr("id");
 					self.bgColour = bgColour;
-					self.openModal(colourName);
+					self.colourName = colourName;
+					self.openModal();
 					//self.pickColour(bgColour, colourName);
 				}else{
 					alert("You have not picked any beads to colour yet.");
@@ -102,17 +109,23 @@ define(["jquery",
 
     pickColour: function(colourName, beadPartToPaint){
 			var self = this,
-					bgColour = self.bgColour;
-					console.log("painting beads " + bgcolour + " " + colourName + " " + beadPartToPaint);
+					bgColour = self.bgColour,
+					colourName = self.colourName;
+					console.log("painting beads " + bgColour + " " + colourName + " " + beadPartToPaint);
 			for( var i = 0; i <= self.beadsToEdit.length; i++){
 				var id = self.beadsToEdit[i];
+						$("#"+self.beadsToEdit[i]).css({	"stroke-width": "0"});
 				if(beadPartToPaint == 'half'){
 	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
-					colourName = colourName + ' half';
+					if(i == 0){
+						colourName = colourName + ' half';
+					}
 				}else{
 	      	$('#' + id + ' g[id^="a"] path').css('fill', bgColour);
 	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
-					colourName = colourName + ' full';
+					if(i == 0){
+						colourName = colourName + ' full';
+					}
 				}
 	      //pass the value of the colour chosen to the bead
 	      $("#necklaceOrderForm #" + id).val(colourName);
@@ -141,6 +154,7 @@ define(["jquery",
 			var self = this,
 					val = null,
 					bgColour = self.bgColour;
+					console.log("openModal " + bgColour);
 			$('#beadPartModal').modal();
 
 			$(".beadPartInput").click(function(){
@@ -148,7 +162,9 @@ define(["jquery",
 			});
 
 			$('#beadPartModal').on('hidden.bs.modal', function (e) {
-				$(self.$currentBeadId).data('beadPart', val);
+				for( var i = 0; i <= self.beadsToEdit.length; i++){
+					$(self.beadsToEdit[i]).data('beadPart', val);
+				}
 				self.pickColour(colourName, val);
 			});
 
