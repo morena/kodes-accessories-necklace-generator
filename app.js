@@ -6,7 +6,6 @@ var express = require('express'),
     chooseColours = require("./controllers/chooseColours"),
     confirmOrder = require("./controllers/confirmOrder");
 
-//app.set('port', 3001);
 app.listen(process.env.PORT || 5000); //for heroku to work
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
@@ -16,7 +15,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.listen(app.get('port'), function () {
-    console.log("Express server listening on port %s.", app.get('port'));
+    console.log("Express server listening");
 });
 
 // respond with "hello world" when a GET request is made to the homepage
