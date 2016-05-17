@@ -33,7 +33,6 @@ define(["jquery",
       $("#beads > g").each(function(){
         id = $(this).attr("id");
         if(typeof id != 'undefined' && id != "cord_1_"){
-          console.log(id);
           beads.push($(this).attr("id"));
         }
       });
@@ -104,6 +103,7 @@ define(["jquery",
     pickColour: function(colourName, beadPartToPaint){
 			var self = this,
 					bgColour = self.bgColour;
+					console.log("painting beads " + bgcolour + " " + colourName + " " + beadPartToPaint);
 			for( var i = 0; i <= self.beadsToEdit.length; i++){
 				var id = self.beadsToEdit[i];
 				if(beadPartToPaint == 'half'){
