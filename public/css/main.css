@@ -4,6 +4,10 @@
 section {
     padding: 100px 0;
 }
+svg #beads g[id^="_x"]:hover{
+  stroke:#e998ea;
+  stroke-width:4px;
+}
 #colours button{
   margin-bottom:5px;
   color:#fff;

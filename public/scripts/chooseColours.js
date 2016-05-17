@@ -55,7 +55,7 @@ define(["jquery",
       var self = this;
       $("#beads > g").click(function(){
         var $bead = $(this);
-				$($bead).css({'stroke': 'rgba(0,0,0,0.6)', 'stroke-width': '4px'});
+				$($bead).css({'stroke': '#945595', 'stroke-width': '4px'});
         //save bead ID in memory
 				self.beadsToEdit.push($bead.attr("id"));
 				console.log("Added bead " + $bead.attr("id") + " to beads to paint");
