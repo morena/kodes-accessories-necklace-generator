@@ -10,7 +10,6 @@ define(["jquery",
 
 		$divToPopulate: null,
     $form: null,
-		$beads: null,
 		beadsToEdit: [],
 		bgColour : null,
 		colourName: null,
@@ -47,8 +46,51 @@ define(["jquery",
       $("#confirmOrder").prop('disabled', true);
     },
 
+		getRandomColour: function(){
+			var colours = [];
+
+			$("#colours li button").each(function(){
+				var bgColour = $(this).data("hex");
+				colours.push(bgColour);
+			});
+
+			var random = Math.ceil( Math.random() * (colours.length - 1) + 1 );
+
+			return colours[random];
+		},
+
 		colourNecklace: function(){
-			var beads = [];
+			var $beads = [],
+					self = this,
+					randomColour1 = self.getRandomColour(),
+					randomColour2 = self.getRandomColour();
+			$beads = $('#beads g[id^="_x"]');
+
+			console.log(randomColour1);
+			console.log(randomColour2);
+
+			for( var i = 0; i <= $beads.length-1; i++){
+				var id = $($beads[i]).attr("id");
+				//$('#' + id + " g path").css("fill", "#FFECB8");
+				console.log(i);
+				console.log(id);
+				if( i === 0 || i === 4){
+					console.log(id);
+					console.log(randomColour1);
+					$('#' + id + ' g[id^="b"] path').css('fill', "#FFECB8");
+					$('#' + id + ' g[id^="a"] path').css('fill', randomColour1);
+				}else if(i === 1 || i === 3){
+					console.log(id);
+					console.log(randomColour2);
+					$('#' + id + ' g[id^="a"] path').css("fill", "#FFECB8");
+					$('#' + id + ' g[id^="b"] path').css("fill", randomColour2);
+				}else{
+					console.log(id);
+					console.log(randomColour1);
+					$('#' + id + ' g[id^="b"] path').css("fill", randomColour1);
+					$('#' + id + ' g[id^="a"] path').css("fill", randomColour1);
+				}
+			}
 		},
 
     respondToClick: function(){
@@ -64,14 +106,12 @@ define(["jquery",
 			//respond on click on colour
 			$("#colours li button").click(function(){
 				if( self.beadsToEdit.length > 0){
-
 					var bgColour = $(this).data("hex"),
 							colourName = $(this).data("colour"),
 							id = $(this).attr("id");
 					self.bgColour = bgColour;
 					self.colourName = colourName;
 					self.openModal();
-					//self.pickColour(bgColour, colourName);
 				}else{
 					alert("You have not picked any beads to colour yet.");
 				}
@@ -114,7 +154,7 @@ define(["jquery",
 					console.log("painting beads " + bgColour + " " + colourName + " " + beadPartToPaint);
 			for( var i = 0; i <= self.beadsToEdit.length; i++){
 				var id = self.beadsToEdit[i];
-						$("#"+self.beadsToEdit[i]).css({	"stroke-width": "0"});
+						$("#"+self.beadsToEdit[i]).css({'stroke': '#945595', "stroke-width": "0"});
 				if(beadPartToPaint == 'half'){
 	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
 					if(i == 0){
