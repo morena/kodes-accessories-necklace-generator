@@ -64,29 +64,20 @@ define(["jquery",
 					self = this,
 					randomColour1 = self.getRandomColour(),
 					randomColour2 = self.getRandomColour();
+			if(randomColour1 === randomColour2){
+				randomColour2 = self.getRandomColour();
+			}
 			$beads = $('#beads g[id^="_x"]');
-
-			console.log(randomColour1);
-			console.log(randomColour2);
 
 			for( var i = 0; i <= $beads.length-1; i++){
 				var id = $($beads[i]).attr("id");
-				//$('#' + id + " g path").css("fill", "#FFECB8");
-				console.log(i);
-				console.log(id);
 				if( i === 0 || i === 4){
-					console.log(id);
-					console.log(randomColour1);
 					$('#' + id + ' g[id^="b"] path').css('fill', "#FFECB8");
 					$('#' + id + ' g[id^="a"] path').css('fill', randomColour1);
 				}else if(i === 1 || i === 3){
-					console.log(id);
-					console.log(randomColour2);
 					$('#' + id + ' g[id^="a"] path').css("fill", "#FFECB8");
 					$('#' + id + ' g[id^="b"] path').css("fill", randomColour2);
 				}else{
-					console.log(id);
-					console.log(randomColour1);
 					$('#' + id + ' g[id^="b"] path').css("fill", randomColour1);
 					$('#' + id + ' g[id^="a"] path').css("fill", randomColour1);
 				}
@@ -154,6 +145,8 @@ define(["jquery",
 					console.log("painting beads " + bgColour + " " + colourName + " " + beadPartToPaint);
 			for( var i = 0; i <= self.beadsToEdit.length; i++){
 				var id = self.beadsToEdit[i];
+						$('#' + id + ' g[id^="a"] path').css("fill", "#FFECB8");
+						$('#' + id + ' g[id^="b"] path').css("fill", "#FFECB8");
 						$("#"+self.beadsToEdit[i]).css({'stroke': '#945595', "stroke-width": "0"});
 				if(beadPartToPaint == 'half'){
 	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
