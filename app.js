@@ -4,7 +4,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     insertDetails = require("./controllers/insertDetails"),
     chooseColours = require("./controllers/chooseColours"),
-    confirmOrder = require("./controllers/confirmOrder");
+    confirmOrder = require("./controllers/confirmOrder"),
+    paypalSDK = require('paypal-rest-sdk'),
+    paypal = require("./controllers/paypal");
 
 app.listen(process.env.PORT || 5000); //for heroku to work
 app.set('views', __dirname + '/views');
@@ -28,3 +30,4 @@ app.get('/', function(req, res) {
 app.get("/insert-details", insertDetails.init);
 app.post("/choose-colours", chooseColours.init);
 app.post("/confirm-order", confirmOrder.init);
+app.get("/paypal", paypal.init);

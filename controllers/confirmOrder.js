@@ -1,6 +1,5 @@
 var express = require('express'),
     app = express(),
-    json,
 		email = require("emailjs"),
     fs = require("fs"),
     json;
@@ -21,7 +20,7 @@ function getConfig(file){
 }
 
 exports.init = function(req, res){
-	var json = getConfig('../data/new-config.json'),
+	var json = getConfig('../data/config.json'),
 			config = json,
 			postObj = req.body,
 			messageText = '',
@@ -29,11 +28,14 @@ exports.init = function(req, res){
 			templateMesage = 'Customise your Kodes necklace';
 
 	var server  = email.server.connect({
-	   user:    config.user,
-	   password:config.password,
+	   user:    process.env.emailusername || config.user,
+	   password:process.env.emailpassword || config.password,
 	   host:    config.host,
 	   ssl:     true
 	});
+
+  console.log(process.env.emailusername || config.user);
+  console.log(process.env.emailpassword || config.password);
 
 	for (var item in postObj){
 		messageText += item + ': ' + postObj[item] + '\n';
@@ -47,8 +49,8 @@ exports.init = function(req, res){
 		   to:      "Morena <morenafiore@gmail.com>, " + req.body.firstName + '<' + req.body.email + '>',
 		   subject: "New Kodes necklace order"
 		}, function(err, message) {
-			//console.log(message);
-			//console.log(err || message);
+			console.log(message);
+			console.log(err || message);
 			if(err == null){
 				templateMesage = req.body.firstName + ' thank you for your order!';
 			}
