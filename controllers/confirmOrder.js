@@ -33,7 +33,7 @@ exports.init = function(req, res){
 
 		var postObj = req.body,
 			messageText = '',
-			sendEmails = config.sendEmail,
+			sendEmails = true,
 			templateMesage = 'Customise your Kodes necklace';
 
 	var server  = email.server.connect({
