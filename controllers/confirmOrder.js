@@ -43,9 +43,6 @@ exports.init = function(req, res){
 	   ssl:     true
 	});
 
-  console.log(process.env.emailusername || config.user);
-  console.log(process.env.emailpassword || config.password);
-
 	for (var item in postObj){
 		messageText += item + ': ' + postObj[item] + '\n';
 	}
