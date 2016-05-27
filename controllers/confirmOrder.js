@@ -20,9 +20,16 @@ function getConfig(file){
 }
 
 exports.init = function(req, res){
-	var json = getConfig('../data/config.json'),
-			config = json,
-			postObj = req.body,
+  if( undefined !== process.env.emailusername ||
+      undefined !== process.env.emailpassword){
+
+    	var json = getConfig('../data/config.json'),
+    			config = json;
+
+          config.sendEmail = true;
+      }
+
+		var postObj = req.body,
 			messageText = '',
 			sendEmails = config.sendEmail,
 			templateMesage = 'Customise your Kodes necklace';
