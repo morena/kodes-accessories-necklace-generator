@@ -27,7 +27,7 @@ exports.init = function(req, res){
     			config = json;
 
       }else{
-        var config = {};
+        var config;
         config.sendEmail = true;
       }
 
