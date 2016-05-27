@@ -26,7 +26,8 @@ exports.init = function(req, res){
     	var json = getConfig('../data/config.json'),
     			config = json;
 
-          config.sendEmail = true;
+      }else{
+        config.sendEmail = true;
       }
 
 		var postObj = req.body,
