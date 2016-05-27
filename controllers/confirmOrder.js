@@ -20,8 +20,8 @@ function getConfig(file){
 }
 
 exports.init = function(req, res){
-  if( undefined !== process.env.emailusername ||
-      undefined !== process.env.emailpassword){
+  if( undefined == process.env.emailusername ||
+      undefined == process.env.emailpassword){
 
     	var json = getConfig('../data/config.json'),
     			config = json;
