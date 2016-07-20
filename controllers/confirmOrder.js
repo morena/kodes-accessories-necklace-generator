@@ -30,8 +30,8 @@ exports.init = function(req, res){
       var config = {};
       config.sendEmail = true;
     }
-
 		var postObj = req.body,
+      order = JSON.parse(req.body.order),
 			messageText = '',
 			sendEmails = true,
 			templateMesage = 'Customise your Kodes necklace';
@@ -43,11 +43,10 @@ exports.init = function(req, res){
 	   ssl:     true
 	});
 
-	for (var item in postObj){
-		messageText += item + ': ' + postObj[item] + '\n';
+	for (var item in order){
+		messageText += item + ': ' + order[item] + '\n';
 	}
-
-	if(sendEmails == true){
+	if(sendEmails == true && messageText !== ''){
 		// send the message and get a callback with an error or details of the message that was sent
 		server.send({
 		   text:    messageText,

@@ -14,11 +14,7 @@ html
               //strong Click on one or more beads, then click on a colour and choose if you want to paint the whole bead or just half.
               strong Click on one or more beads then click on a colour. Move onto a new bead by clicking on it.
         div.row(data-module='chooseColours', id='svgWrapper')
-          form(id='necklaceOrderForm', action='/confirm-order' method='post', class='form-horizontal')
-            input(type='hidden', name='firstName', id='firstName', class='form-control', placeholder='First Name', value=firstName)
-            input(type='hidden', name='lastName', id='lastName', class='form-control', placeholder='Last Name', value=lastName)
-            input(type='hidden', name='email', id='email', class='form-control', placeholder='Email',value=email)
-            input(type='hidden', name='address', id='address', class='form-control', placeholder='Address', value=address)
+          form(id='necklaceOrderForm', action='/insert-details' method='post', class='form-horizontal')
             .row
               .col-sm-6
                 include ./svg.jade

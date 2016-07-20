@@ -29,7 +29,7 @@ app.get('/', function(req, res) {
     'title': 'Kodes Necklaces Generator'
   });
 });
-app.get("/insert-details", insertDetails.init);
-app.post("/choose-colours", chooseColours.init);
+app.post("/insert-details", insertDetails.init);
+app.get("/choose-colours", chooseColours.init);
 app.post("/confirm-order", confirmOrder.init);
 app.get("/paypal", paypal.init);

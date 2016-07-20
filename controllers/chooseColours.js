@@ -28,19 +28,19 @@ json = getConfig('../data/colours.json');
  */
 exports.init = function(req, res){
   //console.log(req.body);
-  var colours = json,
-      firstName = req.body.firstName,
-      lastName = req.body.lastName,
-      email = req.body.email,
-      address = req.body.address;
+  var colours = json;
+      // firstName = req.body.firstName,
+      // lastName = req.body.lastName,
+      // email = req.body.email,
+      // address = req.body.address;
 
   res.render('choose-colours', {
     'title': 'Kodes necklaces generator',
     'message': 'Customise your Kodes necklace',
-    'colours': colours.colours,
-    'firstName': firstName,
-    'lastName': lastName,
-    'email': email,
-    'address': address
+    'colours': colours.colours
+    // 'firstName': firstName,
+    // 'lastName': lastName,
+    // 'email': email,
+    // 'address': address
   });
 }

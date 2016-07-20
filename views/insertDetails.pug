@@ -12,7 +12,8 @@ html
             h2.section-subheading= message
         .row
           div(data-module='insertDetails')
-            form(id='detailsForm', action='/choose-colours' method='post', class='form-horizontal')
+            form(id='detailsForm', action='/confirm-order' method='post', class='form-horizontal')
+              input(type='hidden' name='order' id='order' value=order)
               .row
                 .col-sm-12
                   .row
