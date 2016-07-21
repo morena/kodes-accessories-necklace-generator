@@ -2,6 +2,8 @@
 
 define(["jquery",
 				"compose",
+				"domtoimage",
+				"fileSaver",
 				"./lib/bootstrap.min"],
 	function($,
 		compose){
@@ -132,7 +134,25 @@ define(["jquery",
 				if(valid === false){
 					alert("You have not personalised all the beads.");
 				}else{
-					$("#necklaceOrderForm")[0].submit();
+
+					//generate image instead of submitting
+					var node = document.getElementById('test');
+					domtoimage.toPng(node)
+			    .then(function (dataUrl) {
+			        var img = new Image();
+			        img.src = dataUrl;
+			        //document.body.appendChild(img);
+							var $input = '<input type="hidden" class="image" value="'+img.src+'" id="image" name="image" />';
+							$("#necklaceOrderForm").append($input);
+							$("#necklaceOrderForm")[0].submit();
+			    })
+			    .catch(function (error) {
+			        console.error('oops, something went wrong!', error);
+			    });
+					/*domtoimage.toBlob(document.getElementById('test'))
+			    .then(function (blob) {
+			        window.saveAs(blob, 'my-node.png');
+			    });*/
 				}
 			});
 

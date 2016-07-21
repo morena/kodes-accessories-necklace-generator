@@ -4,8 +4,10 @@
 requirejs.config({
     baseUrl: 'scripts',
     paths: {
-        jquery: 	'lib/jquery-1.12.3.min',
-        text: 		'lib/text'
+        jquery: 	   'lib/jquery-1.12.3.min',
+        text: 		   'lib/text',
+        domtoimage:  'lib/domtoimage',
+        fileSaver:   'lib/fileSaver'
     },
     shim: {
     	bootstrap: ['jquery']

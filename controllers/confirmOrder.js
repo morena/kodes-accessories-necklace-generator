@@ -32,6 +32,7 @@ exports.init = function(req, res){
     }
 		var postObj = req.body,
       order = JSON.parse(req.body.order),
+      image = req.body.image || '',
 			messageText = '',
 			sendEmails = true,
 			templateMesage = 'Customise your Kodes necklace';
@@ -44,7 +45,9 @@ exports.init = function(req, res){
 	});
 
 	for (var item in order){
-		messageText += item + ': ' + order[item] + '\n';
+    if(item !== 'image' || item !== 'beadPart'){
+		  messageText += item + ': ' + order[item] + '\n';
+    }
 	}
 	if(sendEmails == true && messageText !== ''){
 		// send the message and get a callback with an error or details of the message that was sent
@@ -52,10 +55,16 @@ exports.init = function(req, res){
 		   text:    messageText,
 		   from:    "Kodes Order Taker <kodes@morenafiore.com>",
 		   to:      "Morena <morenafiore@gmail.com>, " + req.body.firstName + '<' + req.body.email + '>',
-		   subject: "New Kodes necklace order"
+		   subject: "New Kodes necklace order",
+       attachment:
+       [
+          {data:'<html><img src="'+image+'" /></html>', alternative:true},
+          //{path:'/orders/images/'+orderN+'.png', type:"	image/png", name:"orderN+'.png"}
+       ]
 		}, function(err, message) {
-			console.log(message);
-			console.log(err || message);
+			//console.log(message);
+			//console.log(err || message);
+      console.log(err);
 			if(err == null){
 				templateMesage = req.body.firstName + ' thank you for your order!';
 			}
@@ -66,6 +75,7 @@ exports.init = function(req, res){
 
   res.render('confirm', {
     'title': 'Kodes necklaces generator',
-    'message': templateMesage
+    'message': templateMesage,
+    'image': image
   });
 }

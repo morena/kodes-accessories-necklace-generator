@@ -19,3 +19,6 @@ svg #beads g[id^="_x"]:hover{
 .modal-dialog input[type=radio]{
   box-shadow:none;
 }
+.hidden{
+  display:none;
+}

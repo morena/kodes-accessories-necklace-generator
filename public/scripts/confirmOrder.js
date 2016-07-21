@@ -14,7 +14,7 @@ define(["jquery",
 
 	var confirmOrder = compose( {
 
-		
+
 	});
 
 	return confirmOrder;
