@@ -27,8 +27,10 @@ html
                         button(type='button', class='btn btn-default btn-lg', style={background: item.value}, id=n, data-colour=item.name, data-hex=item.value)
                       - n++
                 .row
-                  .col-lg-12.text-center
-                    button(id='confirmOrder').btn.btn-xl Order necklace
+                  .col-lg-12.text-center.buttons
+                    button(id='downloadThisNecklace').btn.btn-lg Download necklace as image
+                    button(id='orderThisNecklace').btn.btn-lg Order this necklace
+                    button(id='confirmOrder').btn.btn-lg Order this necklace
                   .modal.fade(tabindex='-1', role='dialog', id='beadPartModal')
                     .modal-dialog
                       .modal-content

@@ -22,3 +22,17 @@ svg #beads g[id^="_x"]:hover{
 .hidden{
   display:none;
 }
+.btn-lg {
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 20px 40px;
+}
+.buttons .btn-lg{
+  margin:0 5px 10px 0;
+}

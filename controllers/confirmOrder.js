@@ -20,14 +20,14 @@ function getConfig(file){
 }
 
 exports.init = function(req, res){
-  if( undefined == process.env.emailusername ||
-      undefined == process.env.emailpassword){
+  var config = {};
+  if( undefined === process.env.emailusername ||
+      undefined === process.env.emailpassword){
 
-    	var json = getConfig('../data/config.json'),
-    			config = json;
+    	var json = getConfig('../data/config.json');
+    	config = json;
 
     }else{
-      var config = {};
       config.sendEmail = true;
     }
 		var postObj = req.body,
@@ -49,7 +49,7 @@ exports.init = function(req, res){
 		  messageText += item + ': ' + order[item] + '\n';
     }
 	}
-	if(sendEmails == true && messageText !== ''){
+	if(sendEmails === true && messageText !== ''){
 		// send the message and get a callback with an error or details of the message that was sent
 		server.send({
 		   text:    messageText,
@@ -65,7 +65,7 @@ exports.init = function(req, res){
 			//console.log(message);
 			//console.log(err || message);
       console.log(err);
-			if(err == null){
+			if(err === null){
 				templateMesage = req.body.firstName + ' thank you for your order!';
 			}
 		});
@@ -78,4 +78,4 @@ exports.init = function(req, res){
     'message': templateMesage,
     'image': image
   });
-}
+};

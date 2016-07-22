@@ -43,4 +43,4 @@ exports.init = function(req, res){
     // 'email': email,
     // 'address': address
   });
-}
+};

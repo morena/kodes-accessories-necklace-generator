@@ -118,15 +118,25 @@ define(["jquery",
 				console.log(self.$currentBeadId);
 			});*/
 
+			//download necklace at any point
+			$("#downloadThisNecklace").click(function(e){
+				e.preventDefault();
+				domtoimage.toBlob(document.getElementById('test'))
+				.then(function (blob) {
+						window.saveAs(blob, 'kodes-geometric-necklace.png');
+				});
+			});
+
 			//form validation
 			//disabled for test purposes
-			$("#confirmOrder").click(function(e){
-				var valid = true;
+			$("#confirmOrder, #orderThisNecklace").click(function(e){
+				var valid = true,
+				$self = $(this);
 				e.preventDefault();
 
 				$(".order").each(function(){
 					var beadValue = $(this).val();
-					if(beadValue == '0' ){
+					if(beadValue == '0'  && ( $self.attr("id") !== 'orderThisNecklace') ){
 						valid = false;
 					}
 				});
@@ -135,7 +145,6 @@ define(["jquery",
 					alert("You have not personalised all the beads.");
 				}else{
 
-					//generate image instead of submitting
 					var node = document.getElementById('test');
 					domtoimage.toPng(node)
 			    .then(function (dataUrl) {
@@ -170,13 +179,13 @@ define(["jquery",
 						$("#"+self.beadsToEdit[i]).css({'stroke': '#945595', "stroke-width": "0"});
 				if(beadPartToPaint == 'half'){
 	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
-					if(i == 0){
+					if(i === 0){
 						colourName = colourName + ' half';
 					}
 				}else{
 	      	$('#' + id + ' g[id^="a"] path').css('fill', bgColour);
 	      	$('#' + id + ' g[id^="b"] path').css('fill', bgColour);
-					if(i == 0){
+					if(i === 0){
 						colourName = colourName + ' full';
 					}
 				}
