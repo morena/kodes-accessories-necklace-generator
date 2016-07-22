@@ -131,15 +131,20 @@ define(["jquery",
 			//disabled for test purposes
 			$("#confirmOrder, #orderThisNecklace").click(function(e){
 				var valid = true,
-				$self = $(this);
+				$self = $(this),
+				total = $(".order").length;
 				e.preventDefault();
 
 				$(".order").each(function(){
 					var beadValue = $(this).val();
 					if(beadValue == '0'  && ( $self.attr("id") !== 'orderThisNecklace') ){
-						valid = false;
+						total --;
 					}
 				});
+
+				if(total == 5){
+					valid = false;
+				}
 
 				if(valid === false){
 					alert("You have not personalised all the beads.");
