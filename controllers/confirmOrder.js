@@ -60,7 +60,8 @@ exports.init = function(req, res){
 		   subject: "New Kodes necklace order",
        attachment:
        [
-          {data:'<html>'+messageText+'<br><img src="'+image+'" /></html>', alternative:true},
+          {data:'<html>'+messageText+'</html>', alternative:true},
+          // {data:'<html>'+messageText+'<br><img src="'+image+'" /></html>', alternative:true},
           //{path:'/orders/images/'+orderN+'.png', type:"	image/png", name:"orderN+'.png"}
        ]
 		}, function(err, message) {
